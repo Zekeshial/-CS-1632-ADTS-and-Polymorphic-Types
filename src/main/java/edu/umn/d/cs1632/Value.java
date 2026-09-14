@@ -1,20 +1,19 @@
 package edu.umn.d.cs1632;
 
-public abstract class Value {
-    protected String stringvalue;
+public abstract class Value<T> {
+    protected T value;
 
-    public Value(String stringvalue) {
-        this.stringvalue = stringvalue;
+    public Value(T value) {
+        this.value = value;
     }
 
-    public String getStringvalue() {
-        return stringvalue;
+    public T getValue() {
+        return value;
     }
 
-    public void setStringvalue(String stringvalue) {
-        this.stringvalue = stringvalue;
+    public void setValue(T value) {
+        this.value = value;
     }
 
-    public abstract void ValueConverter ();
 
 }

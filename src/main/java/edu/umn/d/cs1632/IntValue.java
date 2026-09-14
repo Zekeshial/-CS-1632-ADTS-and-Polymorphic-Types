@@ -1,16 +1,15 @@
 package edu.umn.d.cs1632;
 
-public class IntValue extends Value{
+public class IntValue extends Value<Integer>{
 
-    public IntValue(String stringvalue) {
-        super(stringvalue);
+    public IntValue(Integer intValue) {
+        super(intValue);
     }
 
-    public ValueConverter () {
-        try {
-
-        }
+    public IntValue(String IntValueAsString) {
+        super(Integer.valueOf(IntValueAsString));
     }
+
 
 
 }

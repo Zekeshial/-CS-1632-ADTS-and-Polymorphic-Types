@@ -5,6 +5,7 @@ public class Main {
         MArray mArray = new MArray("src/data/simple.csv");
         System.out.println("Data: ");
         System.out.println(mArray);
+
         // Put your code for queries here
     }
 }

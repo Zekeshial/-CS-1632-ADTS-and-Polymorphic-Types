@@ -16,10 +16,18 @@ class MArray {
             List<String[]> allData = csvReader.readAll();
             for (String[] row : allData) {
                 for (String cell : row) {
-//                    if (Integer.valueOf(cell)) {
-//                        System.out.println();
-//                    }
-                    System.out.print(cell + "\t");
+                    try {
+                        IntValue v = new IntValue(cell);
+                        System.out.print(v.getValue() + " (I)" + "\t");
+                    } catch (NumberFormatException e) {
+                        try {
+                            DoubleValue v = new DoubleValue(cell);
+                            System.out.print(v.getValue() + " (D)" + "\t");
+                        } catch (NumberFormatException error) {
+                            StringValue v = new StringValue(cell);
+                            System.out.print(v.getValue() + " (S)" + "\t");
+                        }
+                    }
                 }
                 System.out.println();
             }
