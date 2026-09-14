@@ -16,6 +16,9 @@ class MArray {
             List<String[]> allData = csvReader.readAll();
             for (String[] row : allData) {
                 for (String cell : row) {
+//                    if (Integer.valueOf(cell)) {
+//                        System.out.println();
+//                    }
                     System.out.print(cell + "\t");
                 }
                 System.out.println();
