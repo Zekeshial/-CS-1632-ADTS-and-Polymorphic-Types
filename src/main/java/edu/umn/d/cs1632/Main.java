@@ -1,11 +1,40 @@
 package edu.umn.d.cs1632;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        //Initial creating of objects and displaying the csv file
         MArray mArray = new MArray("src/data/simple.csv");
+        mArray.DisplayFile();
         System.out.println("Data: ");
         System.out.println(mArray);
+        Scanner scanner = new Scanner(System.in);
 
-        // Put your code for queries here
+        //launching information on how to use the program
+        System.out.println("Welcome to the visual dataset program.");
+        System.out.println("To begin simply type V fir vertical vector, H for horizontal vector, or M for submatrix followed by the starting coordinates\n" +
+                "and then how far you wish to go in that line.\n" +
+                "For example if you type H423 it will scan the data on the 4th column, 2rd row, for 3 total values giving you the answer of multi because you have\n" +
+                "two integers and one double.\n" +
+                "To quit enter: Q\n" +
+                "TIP: rows and columns start with 0");
+        //User interactive section of the code
+//        while (true) {
+//            System.out.println("What is your Query: ");
+//
+//            char[] userInputOne = scanner.nextLine().toLowerCase().toCharArray();
+//
+//            if (userInputOne[0] == 'h' || userInputOne[0] == 'v' || userInputOne[0] == 'm') {
+//                System.out.println("The First character in your phrase wasn't H,V, or M");
+//            } else if (userInputOne[1])> ){
+//
+//
+//            }
+//
+//
+//
+//
+//        }
     }
+
 }
