@@ -9,7 +9,13 @@ class MArray {
     // ArrayList<Feature> featureList;
     // ArrayList<ArrayList<DataItem>> data;
     private MArray() {}
+    private String fileName;
+
     public MArray(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public void DisplayFile() {
         try {
             FileReader filereader = new FileReader(fileName);
             CSVReader csvReader = new CSVReader(filereader);
@@ -36,4 +42,28 @@ class MArray {
             e.printStackTrace();
         }
     }
+
+    public String getMArrayValue(int targetRow, int targetColumn) throws IllegalArgumentException{
+        try {
+            FileReader filereader = new FileReader(fileName);
+            CSVReader csvReader = new CSVReader(filereader);
+            List<String[]> allData = csvReader.readAll();
+            if (targetRow < allData.size()) {
+                String[] row = allData.get(targetRow);
+                if (targetColumn < row.length) {
+                    return row[targetColumn];
+                } else {
+                    throw new IllegalArgumentException("Your target column is outside the bounds of the data.");
+                }
+            } else {
+                throw new IllegalArgumentException("Your target row is outside the bounds of the data.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 }
+
