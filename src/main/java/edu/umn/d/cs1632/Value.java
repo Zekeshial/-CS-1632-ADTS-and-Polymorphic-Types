@@ -15,5 +15,9 @@ public abstract class Value<T> {
         this.value = value;
     }
 
+    public abstract String getType();
+
+    public abstract T valueConverter();
+
 
 }

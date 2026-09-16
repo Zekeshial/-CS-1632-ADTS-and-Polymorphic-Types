@@ -6,10 +6,21 @@ public class IntValue extends Value<Integer>{
         super(intValue);
     }
 
+
+
+
     public IntValue(String IntValueAsString) {
         super(Integer.valueOf(IntValueAsString));
     }
 
+    @Override
+    public Integer valueConverter() {
+        return Integer.valueOf(value);
+    }
 
+    @Override
+    public String getType() {
+        return "Integer";
+    }
 
 }

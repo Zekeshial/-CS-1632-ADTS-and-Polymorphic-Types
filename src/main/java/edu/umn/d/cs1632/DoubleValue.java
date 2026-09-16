@@ -6,6 +6,9 @@ public class DoubleValue extends Value<Double>{
         super(doubleValue);
     }
 
+
+
+
     public DoubleValue(String doubleValueAsString) {
         super(Double.valueOf(doubleValueAsString));
     }
@@ -14,4 +17,13 @@ public class DoubleValue extends Value<Double>{
         super(0.0);
     }
 
+    @Override
+    public Double valueConverter() {
+        return Double.valueOf(value);
+    }
+
+    @Override
+    public String getType() {
+        return "Double";
+    }
 }
