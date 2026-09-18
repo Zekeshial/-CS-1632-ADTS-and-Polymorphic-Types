@@ -12,12 +12,14 @@ public class Main {
 
         //launching information on how to use the program
         System.out.println("Welcome to the visual dataset program.");
-        System.out.println("To begin simply type V fir vertical vector, H for horizontal vector, or M for submatrix followed by the starting coordinates\n" +
+        System.out.println("To begin simply type V for vertical vector, H for horizontal vector, or M for submatrix followed by a space then starting coordinates\n" +
                 "and then how far you wish to go in that line.\n" +
-                "For example if you type H 4 2 3 it will scan the data on the 4th column, 2rd row, for 3 total values giving you the answer of multi because you have\n" +
-                "two integers and one double.\n" +
+                "To further explain and give an example for vertical vector the format is V (column, row, (row you wish to go to)) \n" +
+                "Format for horizontal vector H (row, column, (column you wish to go to))\n" +
+                "Format for submatrix M (row, column, (row you wish to go to), (column you wish to go to)\n" +
+                "Example is V 2 2 4 gives you Multi.\n" +
                 "To quit enter: Q\n" +
-                "TIP: rows and columns start with 0");
+                "TIP: rows and columns start with 0 and spaces are needed between each variable ( V224 will not work, V 2 2 4 will work)");
         //User interactive section of the code
         while (true) {
             System.out.println("What is your Query: ");
@@ -36,6 +38,9 @@ public class Main {
                     break;
                 case "m":
                     System.out.println(mArray.MArraySubMatrixValues(Integer.parseInt(inputAsArray[1]), Integer.parseInt(inputAsArray[2]), Integer.parseInt(inputAsArray[3]), Integer.parseInt(inputAsArray[4])));
+                    break;
+                case "q":
+                    System.out.println("Thank you for using the visual dataset program.");
                     break;
                 default:
                     System.out.println("The First character in your phrase wasn't H,V, or M");
