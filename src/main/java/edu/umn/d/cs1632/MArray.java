@@ -4,6 +4,7 @@ import com.opencsv.CSVReader;
 
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -121,7 +122,7 @@ class MArray {
         } else if (distance == column) {
             return getMArrayValue(inLineColumn, row).getType();
         } else if (distance > column && distance <= getMArrayColumnLength()) {
-            for (int i = 0; i < distance - column; i++) {
+            for (int i = 0; i <= distance - column; i++) {
                 list.add(getMArrayValue(inLineColumn, row));
                 inLineColumn++;
             }
@@ -187,104 +188,35 @@ class MArray {
     }
 
     public String MArraySubMatrixValues(int row, int column, int rDistance, int cDistance) {
-        ArrayList<ArrayList<Value>> mList = new ArrayList<>();
-        ArrayList<Value> list = new ArrayList<>();
-        int inLineColumn = column;
+
         int inLineRow = row;
+        ArrayList<String> itemsToCheck = new ArrayList<>();
 
         if (rDistance < row && rDistance >= 0) {
             for (int i = 0; i <= row - rDistance; i++) {
-                if (cDistance < column && cDistance >= 0) {
-                    for (int x = 0; x <= column - cDistance; x++) {
-                        list.add(getMArrayValue(inLineColumn, inLineRow));
-                        inLineColumn--;
-                    }
-                } else if (cDistance == column) {
-                    list.add(getMArrayValue(inLineColumn, inLineRow));
-                } else if (cDistance > column && cDistance < getMArrayColumnLength()) {
-                    for (int x = 0; x < cDistance - column; x++) {
-                        list.add(getMArrayValue(inLineColumn, inLineRow));
-                        inLineColumn++;
-                    }
-                } else if (cDistance > getMArrayColumnLength()) {
-                    System.out.println("You requested something that is outside the length of the data try again.");
-                    return null;
-                } else if (cDistance < 0) {
-                    System.out.println("You requested something that is outside the length of the data try again.");
-                    return null;
-                } else if (row > getMArrayRowLength() || column > getMArrayColumnLength()) {
-                    System.out.println("You requested something outside the length of the code");
-                    return null;
+                itemsToCheck.add(MArrayHorizontalValues(inLineRow, column, cDistance));
+                inLineRow--;
+            }
+            for (String s : itemsToCheck) {
+                if (!Objects.equals((s), itemsToCheck.getFirst())) {
+                    return "Multi";
                 }
-                mList.add(list);
-                inLineRow++;
             }
-            if (mList.stream().flatMap(List::stream).allMatch(element -> element.equals(list.getFirst()))) {
-                return mList.getFirst().getFirst().getType();
-            } else {
-                return "Multi";
-            }
+            return itemsToCheck.getFirst();
+
         } else if (rDistance == row) {
-            if (cDistance < column && cDistance >= 0) {
-                for (int x = 0; x <= column - cDistance; x++) {
-                    list.add(getMArrayValue(inLineColumn, row));
-                    inLineColumn--;
-                }
-            } else if (cDistance == column) {
-                list.add(getMArrayValue(inLineColumn, row));
-            } else if (cDistance > column && cDistance < getMArrayColumnLength()) {
-                for (int x = 0; x < cDistance - column; x++) {
-                    list.add(getMArrayValue(inLineColumn, row));
-                    inLineColumn++;
-                }
-            } else if (cDistance > getMArrayColumnLength()) {
-                System.out.println("You requested something that is outside the length of the data try again.");
-                return null;
-            } else if (cDistance < 0) {
-                System.out.println("You requested something that is outside the length of the data try again.");
-                return null;
-            } else if (row > getMArrayRowLength() || column > getMArrayColumnLength()) {
-                System.out.println("You requested something outside the length of the code");
-                return null;
-            }
-            mList.add(list);
-            if (mList.stream().flatMap(List::stream).allMatch(element -> element.equals(list.getFirst()))) {
-                return mList.getFirst().getFirst().getType();
-            } else {
-                return "Multi";
-            }
+            return MArrayHorizontalValues(row, column, cDistance);
         } else if (rDistance > row && rDistance <= getMArrayRowLength()){
             for (int i = 0; i <= rDistance - row; i++) {
-                if (cDistance < column && cDistance >= 0) {
-                    for (int x = 0; x <= column - cDistance; x++) {
-                        list.add(getMArrayValue(inLineColumn, inLineRow));
-                        inLineColumn--;
-                    }
-                } else if (cDistance == column) {
-                    list.add(getMArrayValue(inLineColumn, inLineRow));
-                } else if (cDistance > column && cDistance < getMArrayColumnLength()) {
-                    for (int x = 0; x < cDistance - column; x++) {
-                        list.add(getMArrayValue(inLineColumn, inLineRow));
-                        inLineColumn++;
-                    }
-                } else if (cDistance > getMArrayColumnLength()) {
-                    System.out.println("You requested something that is outside the length of the data try again.");
-                    return null;
-                } else if (cDistance < 0) {
-                    System.out.println("You requested something that is outside the length of the data try again.");
-                    return null;
-                } else if (row > getMArrayRowLength() || column > getMArrayColumnLength()) {
-                    System.out.println("You requested something outside the length of the code");
-                    return null;
-                }
-                mList.add(list);
+                itemsToCheck.add(MArrayHorizontalValues(inLineRow, column, cDistance));
                 inLineRow++;
+        }
+            for (String s : itemsToCheck) {
+                if (!Objects.equals((s), itemsToCheck.getFirst())) {
+                    return "Multi";
+                }
             }
-            if (mList.stream().flatMap(List::stream).allMatch(element -> element.equals(mList.getFirst().getFirst()))) {
-                return mList.getFirst().getFirst().getType();
-            } else {
-                return "Multi";
-            }
+            return itemsToCheck.getFirst();
         } else if (rDistance > getMArrayRowLength()) {
             System.out.println("You requested something that is outside the length of the data try again.");
             return null;

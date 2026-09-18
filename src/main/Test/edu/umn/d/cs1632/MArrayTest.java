@@ -2,9 +2,7 @@ package edu.umn.d.cs1632;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,41 +14,31 @@ class MArrayTest {
         Value result = data.getMArrayValue(4,4);
         String expected = "v2";
 
-        assertEquals(expected, result);
+        assertEquals(expected, result.getValue());
 
     }
 
     @Test
     void getMArrayValue2() {
         MArray data = new MArray("src/data/simple.csv");
-        Value result = data.getMArrayValue(4,5);
-        int expected = 4;
+        Value result = data.getMArrayValue(2,4);
+        double expected = 4.1;
 
-        assertEquals(expected, result);
+        assertEquals(expected, result.getValue());
 
     }
 
     @Test
     void getMArrayValue3() {
         MArray data = new MArray("src/data/simple.csv");
-        Value result = data.getMArrayValue(10,4);
-        String expected = null;
+        String expected = "Your target column is outside the bounds of the data.";
 
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {data.getMArrayValue(10,4);});
+        String result = exception.getMessage();
         assertEquals(result, expected);
 
     }
 
-    @Test
-    void getMArrayValue4() {
-        MArray data = new MArray("src/data/simple.csv");
-        Value result = data.getMArrayValue(10,4);
-
-
-        assertThrows(IllegalArgumentException.class, () -> {
-            data.getMArrayValue(10,4);
-        });
-
-    }
 
     @Test
     void getMArrayRowLength() {
@@ -179,6 +167,15 @@ class MArrayTest {
     }
 
     @Test
+    void MArrayVerticalValuesTest6() {
+        MArray data = new MArray("src/data/simple.csv");
+        String result = data.MArrayVerticalValues(2,2,4);
+        String expected = "Multi";
+
+        assertEquals(expected, result);
+    }
+
+    @Test
     void MArraySubMatrixValuesTest1() {
         MArray data = new MArray("src/data/simple.csv");
         String result = data.MArraySubMatrixValues(2,3,5,4);
@@ -188,23 +185,75 @@ class MArrayTest {
     }
 
     @Test
+    void MArraySubMatrixValuesTest2() {
+        MArray data = new MArray("src/data/simple.csv");
+        String result = data.MArraySubMatrixValues(2,3,5,5);
+        String expected = "Multi";
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void MArraySubMatrixValuesTest3() {
+        MArray data = new MArray("src/data/simple.csv");
+        String result = data.MArraySubMatrixValues(2,2,5,2);
+        String expected = "Multi";
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void MArraySubMatrixValuesTest4() {
+        MArray data = new MArray("src/data/simple.csv");
+        String result = data.MArraySubMatrixValues(2,2,2,4);
+        String expected = "Multi";
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void MArraySubMatrixValuesTest5() {
+        MArray data = new MArray("src/data/simple.csv");
+        String result = data.MArraySubMatrixValues(5,4,0,3);
+        String expected = "String";
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void MArraySubMatrixValuesTest6() {
+        MArray data = new MArray("src/data/simple.csv");
+        String result = data.MArraySubMatrixValues(5,4,0,10);
+        String expected = null;
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void MArraySubMatrixValuesTest7() {
+        MArray data = new MArray("src/data/simple.csv");
+        String result = data.MArraySubMatrixValues(5,4,10,0);
+        String expected = null;
+
+        assertEquals(expected, result);
+    }
+
+
+
+    @Test
     void Test() {
-        ArrayList<ArrayList<Value>> mList = new ArrayList<>();
-        ArrayList<Value> list = new ArrayList<>();
-        ArrayList<Value> list2 = new ArrayList<>();
-
-        DoubleValue d = new DoubleValue(4.1);
-        IntValue i = new IntValue(5);
-        IntValue r = new IntValue(4);
-        StringValue s = new StringValue("asd");
-
-
-        list.add(d);
-        list.add(r);
-        list2.add(s);
-        list2.add(i);
-
-        System.out.println(mList.stream().flatMap(Collection::stream).allMatch(element -> element.equals(mList.getFirst().getFirst())));
+//        MArray data = new MArray("src/data/simple.csv");
+//        int rDistance = 5;
+//        int row = 2;
+//        int inLineRow = 2;
+//        int column = 3;
+//        int cDistance = 5;
+//        ArrayList<String> itemsToCheck = new ArrayList<>();
+//        for (int i = 0; i <= rDistance - row; i++) {
+//            itemsToCheck.add(data.MArrayHorizontalValues(inLineRow, column, cDistance));
+//            inLineRow++;
+//        }
+//        System.out.println(itemsToCheck);
 
     }
 

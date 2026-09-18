@@ -27,36 +27,23 @@ public class Main {
             String[] inputAsArray = userInput.split("\\s+");
 
 
-//            switch (inputAsArray[0]) {
-//                case "h":
-//                    MArrayHorizontalValues();
-//                    break;
-//                case "v":
-//                    MArrayVertical();
-//                    break;
-//                case "m":
-//                    MArraySubMatrix();
-//                    break;
-//                default:
-//                    System.out.println("The First character in your phrase wasn't H,V, or M");
-//                    break;
-//            }
-
-//            if (Integer.valueOf(inputAsArray[1]) > mArray.getMArrayColumnLength()) {
-//                System.out.println("Your Column length is greater then the dataset.");
-//                continue;
-//            } else if (Integer.valueOf(inputAsArray[1]) < 0) {
-//                System.out.println("You enter a negative number, try something positive.");
-//                continue;
-//            }
-//            if (Integer.valueOf(inputAsArray[2]) > mArray.getMArrayRowLength()) {
-//                System.out.println("Your Row length is greater then the dataset.");
-//                continue;
-//            } else if (Integer.valueOf(inputAsArray[2]) < 0) {
-//                System.out.println("You enter a negative number, try something positive.");
-//                continue;
-//            }
-//            if (inputAsArray[3] )
+            switch (inputAsArray[0]) {
+                case "h":
+                    System.out.println(mArray.MArrayHorizontalValues(Integer.parseInt(inputAsArray[1]), Integer.parseInt(inputAsArray[2]), Integer.parseInt(inputAsArray[3])));
+                    break;
+                case "v":
+                    System.out.println(mArray.MArrayVerticalValues(Integer.parseInt(inputAsArray[1]), Integer.parseInt(inputAsArray[2]), Integer.parseInt(inputAsArray[3])));
+                    break;
+                case "m":
+                    System.out.println(mArray.MArraySubMatrixValues(Integer.parseInt(inputAsArray[1]), Integer.parseInt(inputAsArray[2]), Integer.parseInt(inputAsArray[3]), Integer.parseInt(inputAsArray[4])));
+                    break;
+                default:
+                    System.out.println("The First character in your phrase wasn't H,V, or M");
+                    break;
+            }
+            if (userInput.equals("q")) {
+                break;
+            }
 
         }
     }
